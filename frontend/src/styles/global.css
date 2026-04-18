@@ -1,0 +1,74 @@
+/* ============================================================
+   CSS VARIABLES
+============================================================ */
+:root {
+  --black: #0A0A0A;
+  --white: #F2EDE6;
+  --accent: #8B2E2E;
+  --charcoal: #161616;
+  --muted: #888;
+  --font-display: 'Bebas Neue', sans-serif;
+  --font-body: 'Cormorant Garamond', serif;
+  --font-mono: 'Space Mono', monospace;
+  --ease: cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+/* ============================================================
+   RESET
+============================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--white);
+  color: var(--black);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+}
+img { display: block; width: 100%; }
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+
+/* ============================================================
+   SILK TEXTURE OVERLAY
+============================================================ */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9990;
+  opacity: 0.6;
+}
+
+/* ============================================================
+   SCROLL REVEAL
+============================================================ */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.9s var(--ease), transform 0.9s var(--ease);
+}
+.reveal.visible { opacity: 1; transform: none; }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+/* ============================================================
+   SHARED UTILITIES
+============================================================ */
+.border-motif {
+  display: flex; align-items: center; gap: 12px; margin-bottom: 32px;
+}
+.border-motif span { display: block; height: 1px; background: currentColor; opacity: 0.3; flex: 1; }
+.border-motif i { font-style: normal; font-size: 10px; letter-spacing: 4px; font-family: var(--font-mono); opacity: 0.4; text-transform: uppercase; }
+
+.btn-cta {
+  display: inline-block;
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: 5px;
+  text-transform: uppercase; padding: 16px 48px;
+  border: 1px solid rgba(242,237,230,0.4); color: var(--white);
+  transition: background 0.3s, color 0.3s, border-color 0.3s;
+}
+.btn-cta:hover { background: var(--white); color: var(--black); border-color: var(--white); }
